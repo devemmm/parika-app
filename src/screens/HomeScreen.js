@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ImageBackground, StatusBar, Modal } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList, Image, ImageBackground, StatusBar, Modal } from 'react-native'
 import { Feather, Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { HEIGHT, theme_green, theme_grey, WIDTH } from '../constants/constants';
 import { api } from '../data/api';
-import { FlatList } from 'react-native-gesture-handler';
 
 export class HomeScreen extends Component {
     constructor(props) {
