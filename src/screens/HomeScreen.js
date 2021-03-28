@@ -29,6 +29,7 @@ export class HomeScreen extends Component {
                 </TouchableOpacity>
             </View>
             <Modal
+            statusBarTranslucent={true}
             animationType="slide"
             transparent={false}
             visible={modalVisible}
@@ -42,7 +43,12 @@ export class HomeScreen extends Component {
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) => {
                             return (
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')} style={styles.ParkingCard}>
+                                <TouchableOpacity 
+                                onPress={() => {
+                                    this.setModalVisible(!modalVisible);
+                                    this.props.navigation.navigate('DetailScreen');
+                                }} 
+                                style={styles.ParkingCard}>
                                     <View style={{ marginRight: 10 }} >
                                         <Image style={styles.ParkingImage} source={{ uri: item.url }} />
                                         <Text style={styles.ParkingStatus}>{item.status}</Text>
@@ -166,7 +172,7 @@ const styles = StyleSheet.create({
         marginRight: 5,
         flexDirection: 'row',
         backgroundColor: theme_grey,
-        height: 50,
+        height: 45,
         alignItems: 'center',
         borderRadius: 30,
         paddingLeft: 15,
@@ -177,7 +183,7 @@ const styles = StyleSheet.create({
     SearchInput: {
         marginRight: 20,
         marginLeft: 10,
-        fontSize: 20,
+        fontSize: 17,
         fontWeight: 'bold',
         color: 'grey'
     },
