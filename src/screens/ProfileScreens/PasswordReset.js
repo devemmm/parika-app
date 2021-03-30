@@ -19,8 +19,7 @@ export class PasswordReset extends Component {
             <View style={styles.InputView}>
                 <Text>Enter your email linked to your account and we will send you a <Text style={{ fontWeight: 'bold' }} >Verification code</Text> on your email which will hlp you reset your password </Text>
                 <View style={styles.TextInputView}>
-                    <Text style={styles.Label} >Email address:</Text>
-                    <TextInput style={styles.TextInput} placeholder="example@abc.xyz" />
+                    <TextInput style={styles.TextInput} placeholder='Email' />
                 </View>
             </View>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('PasswordNew')} style={styles.Button}>
@@ -69,8 +68,11 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     TextInput: {
-        borderBottomColor: 'grey',
-        borderBottomWidth: 2
+        backgroundColor: bright_green,
+        height: 45,
+        marginTop: 10,
+        borderRadius: WIDTH *.4,
+        paddingLeft: 15
     },
     Button: {
         backgroundColor: theme_green,

@@ -48,14 +48,12 @@ export class EditProfile extends Component {
                     </View>
                     <View style={styles.TextInputView}>
                         <Text style={styles.Label} >Phone number:</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }} >
-                            <View style={styles.CountryCode}>
-                                <Text >+250</Text>
-                            </View>
-                            <TextInput keyboardType='numeric' style={styles.TextInput} placeholder="781 234 567" />
+                        <View style={styles.PhoneInput} >
+                            <Text style={{ marginRight: 5 }}>+250 </Text>
+                            <TextInput keyboardType='numeric' placeholder='788 123 456' /> 
                         </View>
                     </View>
-                    <Text style={[styles.SectionHeader, { marginTop: 50 }]}>Vehicle Info</Text>
+                    <Text style={[styles.SectionHeader, { marginTop: 30 }]}>Vehicle Info</Text>
                     <TouchableOpacity style={styles.TextInputViewVehicle}>
                         <Text style={styles.Label} >Vehicle Type:</Text>
                         <Text >Cruiser</Text>
@@ -157,6 +155,17 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginTop: 20
     },
+    PhoneInput: {
+        marginBottom: 20,
+        backgroundColor: bright_green,
+        flexDirection: 'row',
+        // width: WIDTH *.8,
+        height: 45,
+        borderRadius: WIDTH *.4,
+        alignItems: 'center',
+        paddingLeft: 15,
+        paddingRight: 15
+    },
     TextInputViewVehicle: {
         marginRight: 15,
         marginLeft: 15,
@@ -172,9 +181,11 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     TextInput: {
-        flex: 1,
-        borderBottomColor: 'grey',
-        borderBottomWidth: 2
+        backgroundColor: bright_green,
+        height: 45,
+        // marginTop: 10,
+        borderRadius: WIDTH *.4,
+        paddingLeft: 15
     },
     CountryCode: {
         backgroundColor: bright_green,

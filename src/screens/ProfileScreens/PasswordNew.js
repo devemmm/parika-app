@@ -65,7 +65,7 @@ export class PasswordNew extends Component {
                     <Text style={styles.PasswordGuideline} >Must be at least 8 characters</Text>
                 </View>
                 <View style={styles.TextInputView}>
-                    <Text style={styles.Label} >Comfirm Password:</Text>
+                    <Text style={styles.Label} >Confirm Password:</Text>
                     <TextInput style={styles.TextInput} placeholder="Password" />
                 </View>
             </View>
@@ -161,8 +161,10 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     TextInput: {
-        borderBottomColor: 'grey',
-        borderBottomWidth: 2
+        backgroundColor: bright_green,
+        height: 45,
+        borderRadius: WIDTH *.4,
+        paddingLeft: 15
     },
     PasswordGuideline: {
         color: theme_green,
