@@ -1,11 +1,17 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { MainNav } from './src/navigations/MainNav';
+import { LoginPages, MainNav } from './src/navigations/MainNav';
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true)
+  
   return (
     <NavigationContainer>
-      <MainNav/>
+      {
+        isLoggedIn ?
+        <MainNav/> :
+        <LoginPages/>
+      }
     </NavigationContainer>
   );
 }
