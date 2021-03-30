@@ -16,6 +16,15 @@ import MapScreen from '../screens/MapScreen';
 import ProfileScreen from '../screens/ProfileScreens/ProfileScreen';
 import NotificationSettings from '../screens/ProfileScreens/NotificationSettings';
 import WalletSettings from '../screens/ProfileScreens/WalletSettings';
+import EditProfile from '../screens/ProfileScreens/EditProfile';
+import PasswordReset from '../screens/ProfileScreens/PasswordReset';
+import PasswordNew from '../screens/ProfileScreens/PasswordNew';
+import LoginScreen from '../screens/LoginScreens/LoginScreen';
+import SignUpScreen from '../screens/LoginScreens/SignUpScreen';
+import ForgotPassword from '../screens/LoginScreens/ForgotPassword';
+import VerifyPhone from '../screens/LoginScreens/VerifyPhone';
+import ProvidePhone from '../screens/LoginScreens/ProvidePhone';
+import WelcomeScreen from '../screens/LoginScreens/WelcomeScreen';
 
 const HomeStack = createStackNavigator()
 const HomePage = () => {
@@ -37,8 +46,11 @@ const ProfilePage = () => {
       <HomeStack.Screen name='ProfileScreen' component={ProfileScreen} />
       <HomeStack.Screen name='NotificationSettings' component={NotificationSettings} />
       <HomeStack.Screen name='WalletSettings' component={WalletSettings} />
+      <HomeStack.Screen name='SettingScreen' component={SettingScreen} />
+      <HomeStack.Screen name='EditProfile' component={EditProfile} />
+      <HomeStack.Screen name='PasswordReset' component={PasswordReset} />
+      <HomeStack.Screen name='PasswordNew' component={PasswordNew} />
     </ProfileStack.Navigator>
-    // WalletSettings
   )
 }
 
@@ -46,19 +58,6 @@ const ProfilePage = () => {
 
 
 const Tab = createBottomTabNavigator();
-
-/*
-const Tab = createBottomTabna()
-
-const tabing = () => {
-    return (
-        <Tab.Navigator>
-            <Tab.Screen name="home" component={Home} />
-        </tab.Navigator>
-    )
-}
-*/
-
 
 export const MainNav = () => {
   return (
@@ -100,4 +99,18 @@ export const MainNav = () => {
       />
     </Tab.Navigator>
   );
+}
+
+const LoginStack = createStackNavigator()
+export const LoginPages = () => {
+  return (
+    <LoginStack.Navigator initialRouteName='WelcomeScreen' screenOptions={{ headerShown: false }} >
+      <LoginStack.Screen name='WelcomeScreen' component={WelcomeScreen} />
+      <LoginStack.Screen name='LoginScreen' component={LoginScreen} />
+      <LoginStack.Screen name='SignUpScreen' component={SignUpScreen} />
+      <LoginStack.Screen name='ForgotPassword' component={ForgotPassword} />
+      <LoginStack.Screen name='ProvidePhone' component={ProvidePhone} />
+      <LoginStack.Screen name='VerifyPhone' component={VerifyPhone} />
+    </LoginStack.Navigator>
+  )
 }

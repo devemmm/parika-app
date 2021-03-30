@@ -10,7 +10,7 @@ export class ProfileScreen extends Component {
         return (
         <View style={styles.Container}>
             <ScrollView>
-            <TouchableOpacity style={styles.ProfileHeader}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfile')} style={styles.ProfileHeader}>
                 <Image source={{ uri: 'https://images.unsplash.com/photo-1533469513-03bfed91f496?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHBvcnRyYWl0c3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' }} style={styles.Image} />
                 <View style={styles.UserDetails}>
                     <View style={styles.NamesView} >
@@ -38,20 +38,19 @@ export class ProfileScreen extends Component {
                     </View>
                     <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.ListItemView}>
-                    <View style={styles.ListItemText}>
-                        <Feather name="gift" size={20} color="black" />
-                        <Text style={styles.ListItemName}>Promo codes</Text>
-                    </View>
-                    <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
-                </TouchableOpacity>
                 <View style={styles.Divider} />
-                <TouchableOpacity style={styles.ListItemView}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('SettingScreen')} style={styles.ListItemView}>
                     <View style={styles.ListItemText}>
                         <Feather name="settings" size={20} color="black" />
                         <Text style={styles.ListItemName}>Settings</Text>
                     </View>
                     <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
+                </TouchableOpacity>                
+                <TouchableOpacity style={styles.ListItemView}>
+                    <View style={styles.ListItemText}>
+                        <Feather name="message-square" size={20} color="black" />
+                        <Text style={styles.ListItemName}>Send feedback</Text>
+                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.ListItemView}>
                     <View style={styles.ListItemText}>
