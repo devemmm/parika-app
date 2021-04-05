@@ -52,14 +52,14 @@ export class ProfileScreen extends Component {
                         <Text style={styles.ListItemName}>Send feedback</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.ListItemView}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('HelpScreen')} style={styles.ListItemView}>
                     <View style={styles.ListItemText}>
                         <Feather name="help-circle" size={20} color="black" />
                         <Text style={styles.ListItemName}>Help center</Text>
                     </View>
                     <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.ListItemView}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('AboutScreen')} style={styles.ListItemView}>
                     <View style={styles.ListItemText}>
                         <Feather name="info" size={20} color="black" />
                         <Text style={styles.ListItemName}>About us</Text>
@@ -69,7 +69,7 @@ export class ProfileScreen extends Component {
                 <TouchableOpacity style={styles.ListItemView}>
                     <View style={styles.ListItemText}>
                         <Feather name="log-out" size={20} color={theme_green} />
-                        <Text style={[styles.ListItemName, { color: theme_green }]}>About us</Text>
+                        <Text style={[styles.ListItemName, { color: theme_green }]}>Logout</Text>
                     </View>
                 </TouchableOpacity>
             </View>

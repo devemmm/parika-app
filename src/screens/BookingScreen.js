@@ -49,7 +49,7 @@ export class BookingScreen extends Component {
                 <View style={styles.VehicleDetailsView}>
                     <View style={styles.VehicleDetailsFlex}>
                         <Text style={styles.VehicleDetailsHeader}>Vehicle</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfile')}>
                             <Text style={{ color: '#51afed', fontWeight: 'bold' }}>Change Vehicle Details</Text>
                         </TouchableOpacity>
                     </View>
@@ -65,17 +65,11 @@ export class BookingScreen extends Component {
                     </View>
                     <View style={styles.MoreInfoView}>
                         <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Driver's Info</Text>
-                        <TouchableOpacity style={styles.DropDownButton}>
-                            <Text >Hakizimana Ja Korode</Text>
-                            <MaterialIcons name="arrow-drop-down" size={30} color="black" />
-                        </TouchableOpacity>
+                        <Text >Hakizimana Ja Korode</Text>
                     </View>
                     <View style={styles.MoreInfoView}>
                         <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Payment Method</Text>
-                        <TouchableOpacity style={styles.DropDownButton}>
-                            <Text >MOMO</Text>
-                            <MaterialIcons name="arrow-drop-down" size={30} color="black" />
-                        </TouchableOpacity>
+                        <Text >MOMO</Text>
                     </View>
                     <View style={styles.MoreInfoView}>
                         <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Price</Text>
@@ -83,7 +77,7 @@ export class BookingScreen extends Component {
                     </View>
                 </View>
             </ScrollView>
-            <TouchableOpacity style={styles.BookNowButton}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('ConfirmPassword')} style={styles.BookNowButton}>
                 <Text style={styles.BookNowButtonText}>Proceed To Payment</Text>
             </TouchableOpacity>
         </View>

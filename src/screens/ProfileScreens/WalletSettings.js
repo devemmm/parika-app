@@ -19,7 +19,7 @@ export class WalletSettings extends Component {
             <TouchableOpacity style={styles.BalanceView}>
                 <View style={styles.flexDirection} >
                     <Text style={styles.SectionHeader}>My Balance</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('WalletRecharge')} >
                         <Text style={{ color: 'white', fontWeight: 'bold' }} >Recharge</Text>
                     </TouchableOpacity>
                 </View>
@@ -32,20 +32,13 @@ export class WalletSettings extends Component {
                         <Text>Edit</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.PaymentCard} >
+                <View style={styles.PaymentCard} >
                     <Image source={{ uri: 'https://www.seekpng.com/png/full/69-691715_mtn-mm-logo-generic-mtn-mobile-money-logo.png' }} style={styles.PaymentImage} />
-                    <View>
+                    <View style={{ flex: 1 }}>
                         <Text>MTN Mobile Mobile</Text>
                         <Text>***189</Text>
                     </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.PaymentCard} >
-                    <Image source={{ uri: 'https://www.seekpng.com/png/full/69-691715_mtn-mm-logo-generic-mtn-mobile-money-logo.png' }} style={styles.PaymentImage} />
-                    <View>
-                        <Text>MTN Mobile Mobile</Text>
-                        <Text>***189</Text>
-                    </View>
-                </TouchableOpacity>
+                </View>
             </View>
         </View>
         )

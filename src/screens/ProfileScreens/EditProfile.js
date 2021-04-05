@@ -1,15 +1,46 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, StatusBar, TextInput } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar, TextInput } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import { bright_green, HEIGHT, theme_green, WIDTH } from '../../constants/constants';
-import { ScrollView } from 'react-native-gesture-handler';
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
 
-export class EditProfile extends Component {
-    render() {
-        return (
+function EditProfile({navigation}) {
+
+    const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+        if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+            }
+        }
+        })();
+    }, []);
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 4],
+        quality: 1,
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+        setImage(result.uri);
+        }
+    };
+
+    
+
+    return (
         <View style={styles.Container}>
             <View style={styles.HeaderView}>
-                <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.BackArrow}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.BackArrow}>
                     <Feather name="arrow-left" size={24} color="black" />
                 </TouchableOpacity>
                 <View style={styles.HeaderTextView}>
@@ -20,13 +51,13 @@ export class EditProfile extends Component {
             <ScrollView>
                 <View>
                     <View>
-                        <Image source={{ uri: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80' }} style={styles.CarImage} />
+                        <View style={styles.CarImage}/>
                         <TouchableOpacity style={styles.EditButton}>
-                            <Feather name="camera" size={20} color="white" />
+                            <Feather name="camera" size={20} color="black" />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.UserImageView}>
-                        <Image source={{ uri: 'https://images.unsplash.com/photo-1533469513-03bfed91f496?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHBvcnRyYWl0c3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' }} style={styles.UserImage} />
+                    <TouchableOpacity onPress={pickImage} style={styles.UserImageView}>
+                        {image && <Image source={{ uri: image }} style={styles.UserImage} />}
                         <View style={styles.EditAvatarButton}>
                             <Feather name="camera" size={20} color="white" />
                         </View>
@@ -74,8 +105,6 @@ export class EditProfile extends Component {
         </View>
         )
     }
-}
-
 
 const styles = StyleSheet.create({
     Container: {
@@ -104,7 +133,8 @@ const styles = StyleSheet.create({
     },
     CarImage: {
         width: WIDTH,
-        height: HEIGHT *.2
+        height: HEIGHT *.2,
+        backgroundColor: theme_green
     },
     EditButton: {
         height: 35,
@@ -112,7 +142,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme_green,
+        backgroundColor: bright_green,
         position: 'absolute',
         right: 10,
         bottom: 10
@@ -129,10 +159,12 @@ const styles = StyleSheet.create({
         bottom: 0
     },
     UserImageView: {
-        height: WIDTH *.25 + 5,
+        height: WIDTH *.25,
         width: WIDTH *.25,
-        marginTop: - HEIGHT *.1,
-        marginLeft: 15,        
+        marginTop: - HEIGHT *.07,
+        marginLeft: 15,     
+        backgroundColor: bright_green,
+        borderRadius: 5
     },
     UserImage: {
         height: WIDTH *.25,

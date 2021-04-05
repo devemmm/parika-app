@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 
 import HomeScreen from '../screens/HomeScreen';
-import TicketScreen from '../screens/TicketScreen';
+import TicketScreen from '../screens/TicketScreens/TicketScreen';
 import SettingScreen from '../screens/ProfileScreens/SettingScreen';
 
 import { theme_green } from '../constants/constants';
@@ -25,6 +25,11 @@ import ForgotPassword from '../screens/LoginScreens/ForgotPassword';
 import VerifyPhone from '../screens/LoginScreens/VerifyPhone';
 import ProvidePhone from '../screens/LoginScreens/ProvidePhone';
 import WelcomeScreen from '../screens/LoginScreens/WelcomeScreen';
+import HelpScreen from '../screens/ProfileScreens/HelpScreen';
+import AboutScreen from '../screens/ProfileScreens/AboutScreen';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import ConfirmPassword from '../components/ConfirmPassword';
+import WalletRecharge from '../screens/ProfileScreens/WalletRecharge';
 
 const HomeStack = createStackNavigator()
 const HomePage = () => {
@@ -35,7 +40,18 @@ const HomePage = () => {
       <HomeStack.Screen name='MapScreen' component={MapScreen}  />
       <HomeStack.Screen name='DetailScreen' component={DetailScreen}  />
       <HomeStack.Screen name='BookingScreen' component={BookingScreen}  />
+      <HomeStack.Screen name='ConfirmPassword' component={ConfirmPassword}  />
     </HomeStack.Navigator>
+  )
+}
+
+const TicketStack = createStackNavigator()
+const TicketPage = () => {
+  return (
+    <TicketStack.Navigator screenOptions={{ headerShown: false }}>
+      <TicketStack.Screen name='TicketScreen' component={TicketScreen} />
+      <TicketStack.Screen name='ConfirmPassword' component={ConfirmPassword} />
+    </TicketStack.Navigator>
   )
 }
 
@@ -46,15 +62,36 @@ const ProfilePage = () => {
       <HomeStack.Screen name='ProfileScreen' component={ProfileScreen} />
       <HomeStack.Screen name='NotificationSettings' component={NotificationSettings} />
       <HomeStack.Screen name='WalletSettings' component={WalletSettings} />
+      <HomeStack.Screen name='WalletRecharge' component={WalletRecharge} />
       <HomeStack.Screen name='SettingScreen' component={SettingScreen} />
       <HomeStack.Screen name='EditProfile' component={EditProfile} />
       <HomeStack.Screen name='PasswordReset' component={PasswordReset} />
       <HomeStack.Screen name='PasswordNew' component={PasswordNew} />
+      <HomeStack.Screen name='HelpScreen' component={HelpScreen} />
+      <HomeStack.Screen name='AboutScreen' component={AboutScreen} />
     </ProfileStack.Navigator>
   )
 }
 
-
+// Hide bottom navigation
+const setTabBarVisible = (route) => {
+  const routeName = getFocusedRouteNameFromRoute(route);
+  const hideOnScreens = [
+    'EditProfile',
+    'DetailScreen',
+    'BookingScreen',
+    'SearchScreen',
+    'NotificationSettings',
+    'WalletSettings',
+    'HelpScreen',
+    'AboutScreen',
+    'MapScreen',
+    'ConfirmPassword'
+    
+  ];
+  if (hideOnScreens.indexOf(routeName) > -1) return false;
+  return true;
+}
 
 
 const Tab = createBottomTabNavigator();
@@ -70,32 +107,35 @@ export const MainNav = () => {
       <Tab.Screen
         name="Home"
         component={HomePage}
-        options={{
+        options={({ route }) => ({
           tabBarLabel: 'Home',
+          tabBarVisible: setTabBarVisible(route),
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Ticket"
-        component={TicketScreen}
-        options={{
+        component={TicketPage}
+        options={({ route }) => ({
           tabBarLabel: 'Tickets',
+          tabBarVisible: setTabBarVisible(route),
           tabBarIcon: ({ color, size }) => (
             <Feather name="bookmark" size={size} color={color} />
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Profile"
         component={ProfilePage}
-        options={{
+        options={({ route }) => ({
           tabBarLabel: 'Profile',
+          tabBarVisible: setTabBarVisible(route),
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
-        }}
+        })}
       />
     </Tab.Navigator>
   );
