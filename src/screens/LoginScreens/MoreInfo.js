@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar, Modal } from 'react-native'
-import { Feather } from '@expo/vector-icons';
+import { Feather, AntDesign } from '@expo/vector-icons';
 import { bright_green, HEIGHT, theme_green, WIDTH } from '../../constants/constants';
 
 
-export class ForgotPassword extends Component {
+export class MoreInfo extends Component {
     render() {
         return (
         <View style={styles.Container} >
@@ -15,15 +15,14 @@ export class ForgotPassword extends Component {
             </View>
             <ScrollView>
                 <View style={styles.BodyView}>
-                    <Text style={styles.HeaderText} >Forgot password</Text>
-                    <Text style={styles.SubText} >Please enter your phone number to receive a verification code.</Text>
+                    <Text style={styles.HeaderText} >Additional Details</Text>
+                    <Text style={styles.SubText} >Thank you for creating an account on Parika App.</Text>
+                    <Text>Please provide some more information for a better experience.</Text>
                     <View style={styles.InputView} >
-                        <View style={styles.TextInput}>
-                            <Feather name="phone" size={18} color="black" style={{ marginRight: 10 }} />
-                            <TextInput style={styles.TextField} keyboardType="phone-pad" placeholder='Phone' />
-                        </View>
+                        <Text>+250 </Text>
+                        <TextInput keyboardType='numeric' style={styles.TextInput} placeholder='788 123 456' /> 
                     </View>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ResetPwd')} style={styles.Button}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('VerifyPhone')} style={styles.Button}>
                         <Text>Send</Text>
                     </TouchableOpacity>
                 </View>
@@ -66,22 +65,20 @@ const styles = StyleSheet.create({
     },
     InputView: {
         marginTop: 20,
-        marginBottom: 20
-    },
-    TextInput: {
-        width: WIDTH *.8,
+        marginBottom: 20,
         backgroundColor: bright_green,
+        flexDirection: 'row',
+        width: WIDTH *.8,
         height: 45,
         marginTop: 10,
         borderRadius: WIDTH *.4,
+        alignItems: 'center',
         paddingLeft: 15,
-        paddingRight: 15,
-        flexDirection: 'row',
-        alignItems: 'center'
+        paddingRight: 15
     },
-    TextField: {
+    TextInput: {
         flex: 1,
-        marginRight: 10,
+        marginLeft: 5,
     },
     Button: {
         backgroundColor: theme_green,
@@ -92,4 +89,4 @@ const styles = StyleSheet.create({
         borderRadius: WIDTH * .3
     }
 })
-export default ForgotPassword
+export default MoreInfo

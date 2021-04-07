@@ -30,6 +30,8 @@ import AboutScreen from '../screens/ProfileScreens/AboutScreen';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import ConfirmPassword from '../components/ConfirmPassword';
 import WalletRecharge from '../screens/ProfileScreens/WalletRecharge';
+import MoreInfo from '../screens/LoginScreens/MoreInfo';
+import ResetPwd from '../screens/LoginScreens/ResetPwd';
 
 const HomeStack = createStackNavigator()
 const HomePage = () => {
@@ -151,6 +153,8 @@ export const LoginPages = () => {
       <LoginStack.Screen name='ForgotPassword' component={ForgotPassword} />
       <LoginStack.Screen name='ProvidePhone' component={ProvidePhone} />
       <LoginStack.Screen name='VerifyPhone' component={VerifyPhone} />
+      <LoginStack.Screen name='MoreInfo' component={MoreInfo} />
+      <LoginStack.Screen name='ResetPwd' component={ResetPwd} />
     </LoginStack.Navigator>
   )
 }

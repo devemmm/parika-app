@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList, Image, ImageBackground, StatusBar, Modal, ScrollView } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar, Modal, FlatList } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import { bright_green, HEIGHT, theme_green, WIDTH } from '../../constants/constants';
+import { vehicleTypes } from '../../data/vehicleTypes';
 
-export class LoginScreen extends Component {
+
+export class ResetPwd extends Component {
     constructor(props) {
         super(props);
  
@@ -42,19 +44,32 @@ export class LoginScreen extends Component {
         this.setState(newState);
         this.props.callback(password); // used to return the value of the password to the caller class, skip this if you are creating this view in the caller class itself
     };
-
+    
     render() {
+        const { modalVisible } = this.state;
         return (
         <View style={styles.Container} >
+            <View style={styles.HeaderView} >
+                <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.BackButton} >
+                    <Feather name="arrow-left" size={24} color="black" />
+                </TouchableOpacity>
+            </View>
             <ScrollView>
-                <Image style={styles.Image} source={{ uri: 'https://images.unsplash.com/photo-1524214786335-66456317bde6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzF8fHBhcmtpbmd8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' }} />
                 <View style={styles.BodyView}>
-                    <Text style={styles.HeaderText} >Welcome back</Text>
-                    <Text style={styles.SubText} >Login to your account</Text>
+                    <Text style={styles.HeaderText} >Reset password</Text>
                     <View style={styles.InputView} >
                         <View style={styles.TextInput}>
-                            <Feather name="phone" size={18} color="black" style={{ marginRight: 10 }} />
-                            <TextInput style={styles.TextField} keyboardType="phone-pad" placeholder='Phone' />
+                            <Feather name="lock" size={18} color="black" style={{ marginRight: 10 }} />
+                            <TextInput 
+                            style={styles.TextField}
+                            // value={this.state.password}
+                            // onChangeText={this.handlePassword}
+                            secureTextEntry={this.state.showPassword}
+                            keyboardType="default" 
+                            placeholder='Old Password' />
+                            <TouchableOpacity style={styles.eyeButton} onPress={this.changePwdType} >
+                                <Feather name={this.state.icEye} size={20} color="grey" />
+                            </TouchableOpacity>
                         </View>
                         <View style={styles.TextInput}>
                             <Feather name="lock" size={18} color="black" style={{ marginRight: 10 }} />
@@ -64,23 +79,15 @@ export class LoginScreen extends Component {
                             // onChangeText={this.handlePassword}
                             secureTextEntry={this.state.showPassword}
                             keyboardType="default" 
-                            placeholder='Password' />
+                            placeholder='New Password' />
                             <TouchableOpacity style={styles.eyeButton} onPress={this.changePwdType} >
                                 <Feather name={this.state.icEye} size={20} color="grey" />
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.Button}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('MoreInfo')} style={styles.Button}>
                         <Text>Login</Text>
                     </TouchableOpacity>
-                    <View style={styles.Footer} >
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ForgotPassword')} >
-                            <Text style={styles.ForgotText} >Forgot your password</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUpScreen')} >
-                            <Text style={styles.DontText} >Don't have an account? <Text style={styles.SignUpGreen} >Signup</Text> </Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
             </ScrollView>
         </View>
@@ -88,29 +95,58 @@ export class LoginScreen extends Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     Container: {
         flex: 1,
+        backgroundColor: 'white',
+        paddingTop: StatusBar.currentHeight
     },
-    Image: {
+    ModalBackground: {
+        backgroundColor: 'black',
+        flex: 1,
+        opacity: .7
+    },
+    ModalContainer: {
+        position: 'absolute',
         width: WIDTH,
-        height: HEIGHT * .40
+        height: HEIGHT,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    ModalView: {
+        backgroundColor: 'white',
+        width: WIDTH *.9,
+        borderRadius: 10,
+        padding: 15,
+        justifyContent: 'center',
+    },
+    CarTypeButton: {
+        height: 40,
+        justifyContent: 'center'
+    },
+    CarTypeButtonText: {
+        textTransform: 'capitalize',
+        fontSize: 16
+    },
+    HeaderView: {
+        height: 55,
+        backgroundColor: 'white',
+        paddingLeft: 15,
+        justifyContent: 'center'
+    },
+    BackButton: {
+        height: 50,
+        justifyContent: 'center',
+        width: 50,
     },
     BodyView: {
-        height: (HEIGHT * .6) + 25 ,
         padding: 15,
         alignItems: 'center',
-        backgroundColor: 'white',
-        marginTop: -25,
-        borderTopRightRadius: 25,
-        borderTopLeftRadius: 25
     },
     HeaderText: {
         fontSize: 22,
         fontWeight: 'bold',
-    },
-    SubText: {
-        color: 'grey'
     },
     InputView: {
         marginTop: 20,
@@ -131,6 +167,12 @@ const styles = StyleSheet.create({
         flex: 1,
         marginRight: 10,
     },
+    eyeButton: {
+        height: 45,
+        width: 35,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     ForgotText: {
         fontWeight: 'bold',
         textAlign: 'center'
@@ -144,7 +186,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     Footer: {
-        marginTop: 20
+        marginTop: 20,
+        width: WIDTH *.8
     },
     Button: {
         backgroundColor: theme_green,
@@ -155,4 +198,4 @@ const styles = StyleSheet.create({
         borderRadius: WIDTH * .3
     }
 })
-export default LoginScreen
+export default ResetPwd
