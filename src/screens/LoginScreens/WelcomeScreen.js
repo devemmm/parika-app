@@ -1,34 +1,49 @@
 import React, { Component } from 'react'
 import { View, Image, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
-import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import { HEIGHT, theme_green, WIDTH } from '../../constants/constants';
 import { welcome } from '../../data/welcome-api';
+
+import Swiper from 'react-native-swiper'
 
 export class WelcomeScreen extends Component {
     render() {
         return (
         <View style={styles.Container} >
-            <SwiperFlatList
-            autoplay
-            autoplayDelay={5}
-            autoplayLoop
-            autoplayLoopKeepAnimation
-            index={2}
-            showPagination = {false}
-            data={welcome}
-            renderItem={({ item }) => (
-                <ImageBackground style={styles.Image} source={{ uri: item.url }} >
+            <Swiper
+            showsPagination
+            paginationStyle={{ marginBottom: HEIGHT *.35 }}
+            activeDotStyle={{ width: 25, height: 10, borderRadius: 10, backgroundColor: theme_green }}
+            dotStyle={{ height: 10, width: 10, borderRadius: 5, backgroundColor: 'white' }}
+            >
+                <ImageBackground style={styles.Image} source={{ uri: welcome[0].url }} >
                     <View style={styles.Opacity} />
                     <View style={styles.TextOnBackground}>
                         <View style={styles.TextView}>
-                            <Text style={styles.Header}>{item.descr}</Text>
-                            <Text style={styles.SubTExt}>{item.descr}</Text>
-                        </View>
-                        
+                            <Text style={styles.Header}>{welcome[0].descr}</Text>
+                            <Text style={styles.SubTExt}>{welcome[0].descr}</Text>
+                        </View>                        
                     </View>
                 </ImageBackground>
-            )}
-            />
+                <ImageBackground style={styles.Image} source={{ uri: welcome[1].url }} >
+                    <View style={styles.Opacity} />
+                    <View style={styles.TextOnBackground}>
+                        <View style={styles.TextView}>
+                            <Text style={styles.Header}>{welcome[1].descr}</Text>
+                            <Text style={styles.SubTExt}>{welcome[1].descr}</Text>
+                        </View>                        
+                    </View>
+                </ImageBackground>
+                <ImageBackground style={styles.Image} source={{ uri: welcome[2].url }} >
+                    <View style={styles.Opacity} />
+                    <View style={styles.TextOnBackground}>
+                        <View style={styles.TextView}>
+                            <Text style={styles.Header}>{welcome[2].descr}</Text>
+                            <Text style={styles.SubTExt}>{welcome[2].descr}</Text>
+                        </View>                        
+                    </View>
+                </ImageBackground>
+            </Swiper>
+            
             <View style={styles.ButtonView}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUpScreen')} style={styles.Button} >
                     <Text style={styles.ButtonText}>Signup</Text>
@@ -54,7 +69,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     Opacity: {
-        backgroundColor: theme_green,
+        backgroundColor: 'black',
         height: HEIGHT,
         opacity: .4
     },
@@ -79,7 +94,7 @@ const styles = StyleSheet.create({
     },
     ButtonView: {
         position: 'absolute',
-        bottom: HEIGHT *.25,
+        bottom: HEIGHT *.15,
     },
     Button: {
         backgroundColor: theme_green,
