@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
-import { createStackNavigator } from '@react-navigation/stack'
+import { Feather } from '@expo/vector-icons';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 
 
 import HomeScreen from '../screens/HomeScreen';
@@ -24,7 +24,6 @@ import SignUpScreen from '../screens/LoginScreens/SignUpScreen';
 import ForgotPassword from '../screens/LoginScreens/ForgotPassword';
 import VerifyPhone from '../screens/LoginScreens/VerifyPhone';
 import ProvidePhone from '../screens/LoginScreens/ProvidePhone';
-import WelcomeScreen from '../screens/LoginScreens/WelcomeScreen';
 import HelpScreen from '../screens/ProfileScreens/HelpScreen';
 import AboutScreen from '../screens/ProfileScreens/AboutScreen';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
@@ -32,6 +31,9 @@ import ConfirmPassword from '../components/ConfirmPassword';
 import WalletRecharge from '../screens/ProfileScreens/WalletRecharge';
 import MoreInfo from '../screens/LoginScreens/MoreInfo';
 import ResetPwd from '../screens/LoginScreens/ResetPwd';
+import Welcome1 from '../screens/LoginScreens/Welcome1';
+import Welcome2 from '../screens/LoginScreens/Welcome2';
+import Welcome3 from '../screens/LoginScreens/Welcome3';
 
 const HomeStack = createStackNavigator()
 const HomePage = () => {
@@ -147,7 +149,27 @@ const LoginStack = createStackNavigator()
 export const LoginPages = () => {
   return (
     <LoginStack.Navigator initialRouteName='WelcomeScreen' screenOptions={{ headerShown: false }} >
-      <LoginStack.Screen name='WelcomeScreen' component={WelcomeScreen} />
+      <LoginStack.Screen 
+      name='Welcome1' 
+      component={Welcome1}
+      options={{
+        cardStyleInterpolator:
+          CardStyleInterpolators.forHorizontalIOS,
+      }} />
+      <LoginStack.Screen 
+      name='Welcome2' 
+      component={Welcome2}
+      options={{
+        cardStyleInterpolator:
+          CardStyleInterpolators.forHorizontalIOS,
+      }} />
+      <LoginStack.Screen 
+      name='Welcome3' 
+      component={Welcome3}
+      options={{
+        cardStyleInterpolator:
+          CardStyleInterpolators.forHorizontalIOS,
+      }} />
       <LoginStack.Screen name='LoginScreen' component={LoginScreen} />
       <LoginStack.Screen name='SignUpScreen' component={SignUpScreen} />
       <LoginStack.Screen name='ForgotPassword' component={ForgotPassword} />
