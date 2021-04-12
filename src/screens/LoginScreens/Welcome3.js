@@ -5,44 +5,20 @@ import { welcome } from '../../data/welcome-api';
 
 import Swiper from 'react-native-swiper'
 
-export class WelcomeScreen extends Component {
+export class Welcome3 extends Component {
     render() {
         return (
         <View style={styles.Container} >
-            <Swiper
-            showsPagination
-            paginationStyle={{ marginBottom: HEIGHT *.35 }}
-            activeDotStyle={{ width: 25, height: 10, borderRadius: 10, backgroundColor: theme_green }}
-            dotStyle={{ height: 10, width: 10, borderRadius: 5, backgroundColor: 'white' }}
-            >
-                <ImageBackground style={styles.Image} source={{ uri: welcome[0].url }} >
-                    <View style={styles.Opacity} />
-                    <View style={styles.TextOnBackground}>
-                        <View style={styles.TextView}>
-                            <Text style={styles.Header}>{welcome[0].descr}</Text>
-                            <Text style={styles.SubTExt}>{welcome[0].descr}</Text>
-                        </View>                        
-                    </View>
-                </ImageBackground>
-                <ImageBackground style={styles.Image} source={{ uri: welcome[1].url }} >
-                    <View style={styles.Opacity} />
-                    <View style={styles.TextOnBackground}>
-                        <View style={styles.TextView}>
-                            <Text style={styles.Header}>{welcome[1].descr}</Text>
-                            <Text style={styles.SubTExt}>{welcome[1].descr}</Text>
-                        </View>                        
-                    </View>
-                </ImageBackground>
-                <ImageBackground style={styles.Image} source={{ uri: welcome[2].url }} >
-                    <View style={styles.Opacity} />
-                    <View style={styles.TextOnBackground}>
-                        <View style={styles.TextView}>
-                            <Text style={styles.Header}>{welcome[2].descr}</Text>
-                            <Text style={styles.SubTExt}>{welcome[2].descr}</Text>
-                        </View>                        
-                    </View>
-                </ImageBackground>
-            </Swiper>
+
+            <ImageBackground style={styles.Image} source={{ uri: welcome[2].url }} >
+                <View style={styles.Opacity} />
+                <View style={styles.TextOnBackground}>
+                    <View style={styles.TextView}>
+                        <Text style={styles.Header}>{welcome[2].descr}</Text>
+                        <Text style={styles.SubTExt}>{welcome[2].descr}</Text>
+                    </View>                        
+                </View>
+            </ImageBackground>
             
             <View style={styles.ButtonView}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUpScreen')} style={styles.Button} >
@@ -109,4 +85,4 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 })
-export default WelcomeScreen
+export default Welcome3
