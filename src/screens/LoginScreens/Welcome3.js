@@ -3,13 +3,10 @@ import { View, Image, Text, StyleSheet, ImageBackground, TouchableOpacity } from
 import { HEIGHT, theme_green, WIDTH } from '../../constants/constants';
 import { welcome } from '../../data/welcome-api';
 
-import Swiper from 'react-native-swiper'
-
 export class Welcome3 extends Component {
     render() {
         return (
         <View style={styles.Container} >
-
             <ImageBackground style={styles.Image} source={{ uri: welcome[2].url }} >
                 <View style={styles.Opacity} />
                 <View style={styles.TextOnBackground}>

@@ -45,13 +45,7 @@ export class ProfileScreen extends Component {
                         <Text style={styles.ListItemName}>Settings</Text>
                     </View>
                     <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
-                </TouchableOpacity>                
-                <TouchableOpacity style={styles.ListItemView}>
-                    <View style={styles.ListItemText}>
-                        <Feather name="message-square" size={20} color="black" />
-                        <Text style={styles.ListItemName}>Send feedback</Text>
-                    </View>
-                </TouchableOpacity>
+                </TouchableOpacity>  
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('HelpScreen')} style={styles.ListItemView}>
                     <View style={styles.ListItemText}>
                         <Feather name="help-circle" size={20} color="black" />

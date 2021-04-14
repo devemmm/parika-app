@@ -3,8 +3,6 @@ import { View, Image, Text, StyleSheet, ImageBackground, TouchableOpacity } from
 import { HEIGHT, theme_green, WIDTH } from '../../constants/constants';
 import { welcome } from '../../data/welcome-api';
 
-import Swiper from 'react-native-swiper'
-
 export class Welcome1 extends Component {
     render() {
         return (

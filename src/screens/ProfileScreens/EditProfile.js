@@ -95,7 +95,7 @@ function EditProfile({navigation}) {
                     </View>
                     <View style={styles.TextInputView}>
                         <Text style={styles.Label} >Plate Number:</Text>
-                        <TextInput keyboardType="numeric" style={styles.TextInput} placeholder="RAD 234K" />
+                        <TextInput style={styles.TextInput} placeholder="RAD 234K" />
                     </View>
                 </View>
             </ScrollView>
