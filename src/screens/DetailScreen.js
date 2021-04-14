@@ -37,32 +37,6 @@ export class DetailScreen extends Component {
                     </View>
                 </View>  
                 <View>
-                    <Text style={styles.SpaceAvailableTitle}>Space Available</Text>
-                    <View style={styles.SpaceAvailableView}>
-                        <Text style={styles.SpaceAvailableText}>Today we have <Text style={styles.SpaceAvailableTextSpan}>231 parking lots</Text> available. Please don't forget to select before booking. </Text>
-                    </View>
-                    <View style={styles.ParkingLotView}>
-                        <View style={styles.ParkingLotCard}>
-                            <Text>P.L</Text>
-                            <Text style={styles.ParkingLotId}>23/34</Text>
-                        </View>
-                        <View style={styles.ParkingLotCard}>
-                            <Text>P.L</Text>
-                            <Text style={styles.ParkingLotId}>23/34</Text>
-                        </View>
-                        <View style={styles.ParkingLotCard}>
-                            <Text>P.L</Text>
-                            <Text style={styles.ParkingLotId}>23/34</Text>
-                        </View>
-                        <View style={styles.ParkingLotCard}>
-                            <Text>P.L</Text>
-                            <Text style={styles.ParkingLotId}>23/34</Text>
-                        </View>
-                        <View style={styles.ParkingLotCard}>
-                            <Text>P.L</Text>
-                            <Text style={styles.ParkingLotId}>23/34</Text>
-                        </View>
-                    </View>
                     <View>
                         <Text style={styles.MoreDetailsHeader}>More Details</Text>
                         <Text><Text style={styles.BoldText}>Parking Address: </Text>Kigali City Tower </Text>
