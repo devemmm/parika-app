@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet, ImageBackground, StatusBar } from 'react-native'
-import { Feather, Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { Feather, Ionicons, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { api } from '../data/api';
 import { HEIGHT, theme_green, theme_grey, WIDTH } from '../constants/constants';
 
-// import ParkingDetails from '../components/ParkingDetails'
-
-export class DetailScreen extends Component {
+export class DetailScreen extends Component {    
     render() {
         return (
-        // <ParkingDetails/>
-
         <View style={styles.Container}>
             <View>
                 <Image style={styles.HeaderBackgroundImage} source={{ uri: api[0].url }} />
@@ -24,7 +20,12 @@ export class DetailScreen extends Component {
                         <Text style={styles.ParkingLocation}>{api[0].location}</Text>
                         <Text style={styles.ParkingName}>{api[0].name}</Text>
                     </View>
-                    <Text style={styles.RatingView}>{api[0].rating.toFixed(1)}</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <TouchableOpacity >
+                            <MaterialIcons name="favorite-outline" size={26} color="black" />
+                        </TouchableOpacity>
+                        <Text style={styles.RatingView}>{api[0].rating.toFixed(1)}</Text>
+                    </View>
                 </View>   
                 <View style={styles.ParkingDistanceView}>
                     <View style={styles.flexRow}>
@@ -37,12 +38,10 @@ export class DetailScreen extends Component {
                     </View>
                 </View>  
                 <View>
-                    <View>
-                        <Text style={styles.MoreDetailsHeader}>More Details</Text>
-                        <Text><Text style={styles.BoldText}>Parking Address: </Text>Kigali City Tower </Text>
-                        <Text><Text style={styles.BoldText}>Street Number: </Text>KK 234 ST, Kigali </Text>
-                        <Text><Text style={styles.BoldText}>Open Hours: </Text>06:00 - 20:00 </Text>
-                    </View>
+                    <Text style={styles.MoreDetailsHeader}>More Details</Text>
+                    <Text><Text style={styles.BoldText}>Parking Address: </Text>Kigali City Tower </Text>
+                    <Text><Text style={styles.BoldText}>Street Number: </Text>KK 234 ST, Kigali </Text>
+                    <Text><Text style={styles.BoldText}>Open Hours: </Text>06:00 - 20:00 </Text>
                 </View>       
             </ScrollView>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('BookingScreen')} style={styles.BookNowButton}>
@@ -61,14 +60,14 @@ const styles = StyleSheet.create({
     HeaderBackgroundImage: {
         width: WIDTH,
         height: HEIGHT *.3,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20
+        // borderBottomRightRadius: 20,
+        // borderBottomLeftRadius: 20
     },
     BackButton: {
         position: 'absolute',
-        marginTop: StatusBar.currentHeight,
+        marginTop: StatusBar.currentHeight + 15,
         backgroundColor: theme_green,
-        margin: 15,
+        marginLeft: 15,
         width: 40,
         height: 40,
         justifyContent: 'center',
@@ -102,7 +101,8 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         justifyContent: 'center',
         textAlign: 'center',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginLeft: 10
     },
     ParkingDistanceView: {
         flexDirection: 'row',
@@ -111,8 +111,7 @@ const styles = StyleSheet.create({
         paddingBottom: 25,
         borderBottomColor: theme_green,
         borderBottomWidth: 1,
-        marginBottom: 20
-
+        marginBottom: 10
     },
     flexRow: {
         flexDirection: 'row',
@@ -124,23 +123,6 @@ const styles = StyleSheet.create({
     },
     ParkingPrice: {
         marginLeft: 5
-    },
-    SpaceAvailableTitle: {
-        fontWeight: 'bold',
-        fontSize: 18
-    },
-    SpaceAvailableView: {
-        marginTop: 10,
-        padding: 15,
-        borderColor: theme_green,
-        borderWidth: 2,
-        borderRadius: 10
-    },
-    SpaceAvailableText: {
-        fontSize: 16,
-    },
-    SpaceAvailableTextSpan: {
-        fontWeight: 'bold'
     },
     ParkingLotView: {
         marginTop: 10,
@@ -164,7 +146,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
-        marginTop: 20
     },
     BoldText: {
         fontWeight: 'bold'
