@@ -85,7 +85,7 @@ export class HomeScreen extends Component {
                 <View style={styles.NearestHeader}>
                     <Text style={styles.NearestHeaderTitle}>Nearest Parking</Text>
                     <TouchableOpacity onPress={() => this.setModalVisible(!modalVisible)}  style={styles.MoreNearestButton}>
-                        <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
+                        <MaterialIcons name="keyboard-arrow-down" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
                 <View>
@@ -114,9 +114,8 @@ export class HomeScreen extends Component {
                         </View>
                     </TouchableOpacity>
 
-                    {/* duplicate of parking card */}
-
                     <TouchableOpacity 
+                        onPress={() => this.props.navigation.navigate('DetailScreen')}
                         style={styles.ParkingCard}>
                         <View style={{ marginRight: 10 }} >
                             <Image style={styles.ParkingImage} source={{ uri: api[1].url }} />
@@ -234,8 +233,9 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     MoreNearestButton: {
-        backgroundColor: 'transparent',
-        padding: 5
+        backgroundColor: theme_green,
+        padding: 5,
+        borderRadius: 5,
     },
     ParkingCard: {
         flexDirection: 'row',
