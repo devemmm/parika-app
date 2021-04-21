@@ -58,7 +58,6 @@ export class ConfirmPassword extends Component {
                 <View style={styles.BackArrow} />
             </View>
             <View style={styles.InputView}>
-                    {/* <Text style={styles.Label} >Password:</Text> */}
                     <TextInput style={styles.TextInput} placeholder="Password" />
             </View>
             <TouchableOpacity onPress={() => this.setModalVisible(!modalVisible)} style={styles.Button}>
