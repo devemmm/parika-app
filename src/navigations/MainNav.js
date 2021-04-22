@@ -34,6 +34,7 @@ import ResetPwd from '../screens/LoginScreens/ResetPwd';
 import Welcome1 from '../screens/LoginScreens/Welcome1';
 import Welcome2 from '../screens/LoginScreens/Welcome2';
 import Welcome3 from '../screens/LoginScreens/Welcome3';
+import NearestParking from '../screens/NearestParking';
 
 const HomeStack = createStackNavigator()
 const HomePage = () => {
@@ -45,6 +46,7 @@ const HomePage = () => {
       <HomeStack.Screen name='DetailScreen' component={DetailScreen}  />
       <HomeStack.Screen name='BookingScreen' component={BookingScreen}  />
       <HomeStack.Screen name='ConfirmPassword' component={ConfirmPassword}  />
+      <HomeStack.Screen name='NearestParking' component={NearestParking}  />
     </HomeStack.Navigator>
   )
 }

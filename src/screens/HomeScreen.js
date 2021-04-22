@@ -1,24 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList, Image, ImageBackground, StatusBar, Modal } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground, StatusBar, Modal } from 'react-native'
 import { Feather, Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { HEIGHT, theme_green, theme_grey, WIDTH } from '../constants/constants';
 import { api } from '../data/api';
 
 export class HomeScreen extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-            modalVisible: false
-        }
-    }
-
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
-      }
     
     render() {
-        const { modalVisible } = this.state;
         return (
         <ImageBackground style={styles.Container} source={ require('../../assets/images/map.png') } >
             <View style={styles.HeaderView}>
@@ -28,63 +16,10 @@ export class HomeScreen extends Component {
                     <Text style={styles.SearchInput}>Try 'Kigali City Tower'</Text>
                 </TouchableOpacity>
             </View>
-            <Modal
-            statusBarTranslucent={true}
-            animationType="slide"
-            transparent={false}
-            visible={modalVisible}
-            >
-                <View style={styles.Modal} >
-                    <Text style={styles.NearestHeaderTitle}>Nearest Parking</Text>
-                    <View style={styles.NearbyParkingViewMore} >
-                        <FlatList
-                        data={api}
-                        keyExtractor={item => `${item.id}`}
-                        showsVerticalScrollIndicator={false}
-                        renderItem={({item}) => {
-                            return (
-                                <TouchableOpacity 
-                                onPress={() => {
-                                    this.setModalVisible(!modalVisible);
-                                    this.props.navigation.navigate('DetailScreen');
-                                }} 
-                                style={styles.ParkingCard}>
-                                    <View style={{ marginRight: 10 }} >
-                                        <Image style={styles.ParkingImage} source={{ uri: item.url }} />
-                                        <Text style={styles.ParkingStatus}>{item.status}</Text>
-                                    </View>
-                                    <View>
-                                        <Text style={styles.ParkingName}>{item.name}</Text>
-                                        <View style={styles.flexRow}>
-                                            <MaterialIcons name="star" size={17} color="black" />
-                                            <Text style={styles.ParkingRating}>{item.rating}</Text>
-                                            <Text style={styles.ParkingLocation}>{item.location}</Text>
-                                        </View>
-                                        <View style={[styles.flexRow, { marginTop: 10 }]}>
-                                            <View style={styles.flexRow}>
-                                                <FontAwesome5 name="car" size={18} color="black" />
-                                                <Text style={styles.ParkingDistance}>{item.distance} m</Text>
-                                            </View>
-                                            <View style={styles.flexRow}>
-                                                <Ionicons name="bookmark" size={18} color="black" />
-                                                <Text style={styles.ParkingPrice}>Rwf {item.price}/h</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            )
-                        }}
-                        />
-                    </View>
-                    <TouchableOpacity onPress={() => this.setModalVisible(!modalVisible)} style={styles.CloseModalButton}>
-                        <Feather name="x" size={30} color="black" />
-                    </TouchableOpacity>
-                </View>
-            </Modal>
             <View style={styles.NearestView}>
                 <View style={styles.NearestHeader}>
                     <Text style={styles.NearestHeaderTitle}>Nearest Parking</Text>
-                    <TouchableOpacity onPress={() => this.setModalVisible(!modalVisible)}  style={styles.MoreNearestButton}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate("NearestParking")} style={styles.MoreNearestButton}>
                         <MaterialIcons name="keyboard-arrow-down" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
@@ -185,29 +120,6 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         color: 'grey'
-    },
-    Modal: {
-        justifyContent: "center",
-        flex: 1,
-        backgroundColor: theme_green,
-        alignItems: "center",
-    },
-    NearbyParkingViewMore: {
-        backgroundColor: 'white',
-        height: HEIGHT *.75,
-        width: WIDTH *.9,
-        borderRadius: 5,
-        marginTop: 15,
-        marginBottom: 15,
-        padding: 7
-    },
-    CloseModalButton: {
-        backgroundColor: 'white',
-        height: 50,
-        width: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 25,
     },
     NearestView: {
         backgroundColor: 'white',
