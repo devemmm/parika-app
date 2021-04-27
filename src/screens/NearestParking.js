@@ -117,6 +117,9 @@ export class NearestParking extends Component {
                 )
             }}
             />
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("HomeScreen")} style={styles.ListViewButton}>
+                <Feather name="map" size={24} color="white" />
+            </TouchableOpacity>
         </View>
         )
     }
@@ -223,6 +226,18 @@ const styles = StyleSheet.create({
     },
     ParkingPrice: {
         marginLeft: 5
+    },
+    ListViewButton: {
+        position: 'absolute',
+        bottom: 15,
+        right: 15,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: theme_green,
+        elevation: 5
     }
 })
 export default NearestParking
