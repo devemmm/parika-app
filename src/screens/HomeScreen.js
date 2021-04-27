@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground, StatusBar, Modal } from 'react-native'
-import { Feather, Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import { HEIGHT, theme_green, theme_grey, WIDTH } from '../constants/constants';
-import { api } from '../data/api';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, StatusBar, Modal } from 'react-native'
+import { Feather } from '@expo/vector-icons';
+import { theme_green, theme_grey, WIDTH } from '../constants/constants';
 
 export class HomeScreen extends Component {
     
