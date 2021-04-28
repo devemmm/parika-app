@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     },
     HeaderView: {
         backgroundColor: theme_green,
-        paddingTop: StatusBar.currentHeight + 10,
+        paddingTop: StatusBar.currentHeight + 30,
         paddingLeft: 15,
         paddingRight: 15,
         borderBottomLeftRadius: 20,
