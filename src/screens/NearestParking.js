@@ -13,6 +13,7 @@ export class NearestParking extends Component {
         }
     }
 
+
     setModalVisible = (visible) => {
         this.setState({ modalVisible: visible });
     }
@@ -71,11 +72,7 @@ export class NearestParking extends Component {
                 </View>
             </Modal>
             <View style={styles.NearestHeader}>
-                <View style={styles.NearestHeaderLeft}>
-                    <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.ArrowBack}>
-                        <Feather name="arrow-left" size={24} color="black" />
-                    </TouchableOpacity>
-                </View>
+                <View style={styles.NearestHeaderLeft}/>
                 <Text style={styles.NearestHeaderTitle}>Nearest Parking</Text>
                 <TouchableOpacity onPress={() => {
                 this.setModalVisible(!modalVisible);
@@ -90,10 +87,10 @@ export class NearestParking extends Component {
             contentContainerStyle={{ paddingTop: 10 }}
             renderItem={({item}) => {
                 return (
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen')} style={styles.ParkingCard}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailScreen' , {item: item})} style={styles.ParkingCard}>
                         <View style={{ marginRight: 10 }} >
                             <Image style={styles.ParkingImage} source={{ uri: item.url }} />
-                            <Text style={styles.ParkingStatus}>{item.status}</Text>
+                            { item.available ? <Text style={[styles.ParkingStatus, {backgroundColor: theme_green}]}>available</Text> : <Text style={[styles.ParkingStatus, {backgroundColor: 'red'}]}>overbooked</Text> }                          
                         </View>
                         <View>
                             <Text style={styles.ParkingName}>{item.name}</Text>
@@ -104,11 +101,11 @@ export class NearestParking extends Component {
                             </View>
                             <View style={[styles.flexRow, { marginTop: 10 }]}>
                                 <View style={styles.flexRow}>
-                                    <FontAwesome5 name="car" size={18} color="black" />
+                                    <FontAwesome5 name="car" size={16} color="grey" />
                                     <Text style={styles.ParkingDistance}>{item.distance} m</Text>
                                 </View>
                                 <View style={styles.flexRow}>
-                                    <Ionicons name="bookmark" size={18} color="black" />
+                                    <Ionicons name="bookmark" size={16} color="grey" />
                                     <Text style={styles.ParkingPrice}>Rwf {item.price}/h</Text>
                                 </View>
                             </View>
@@ -194,14 +191,15 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     ParkingStatus: {
-        backgroundColor: theme_green,
+        fontSize: 11,
         position: 'absolute',
-        paddingLeft: 5,
-        paddingRight: 5,
         color: 'white',
         borderRadius: 3,
-        bottom: 0,
-        textTransform: 'capitalize'
+        bottom: 5,
+        right: 3,
+        left: 3,
+        textTransform: 'capitalize',
+        textAlign: 'center'
     },
     flexRow: {
         flexDirection: 'row',
@@ -222,10 +220,14 @@ const styles = StyleSheet.create({
     },
     ParkingDistance: {
         marginRight: 15,
-        marginLeft: 5
+        marginLeft: 5,
+        color: 'grey',
+        fontSize: 12
     },
     ParkingPrice: {
-        marginLeft: 5
+        marginLeft: 5,
+        color: 'grey',
+        fontSize: 12
     },
     ListViewButton: {
         position: 'absolute',
