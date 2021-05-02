@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList, Image, ImageBackground, StatusBar, Modal, ScrollView } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import { bright_green, HEIGHT, theme_green, WIDTH } from '../../constants/constants';
 
@@ -8,10 +8,11 @@ export class LoginScreen extends Component {
         super(props);
  
         this.state = {
-            modalVisible: false,
-            icEye: 'eye-off', // default icon to show that password is currently hidden
-            password: '', // actual value of password entered by the user
-            showPassword: true // boolean to show/hide the password  
+            icEye: 'eye-off',
+            username: '',
+            password: '', 
+            showPassword: true,
+            showError: false,
         }
     }
  
@@ -33,6 +34,7 @@ export class LoginScreen extends Component {
         // set new state value
         this.setState(newState)
     };
+
     handlePassword = (password) => {
         let newState = {
             icEye: this.state.icEye,
@@ -40,8 +42,20 @@ export class LoginScreen extends Component {
             password: password
         }
         this.setState(newState);
-        this.props.callback(password); // used to return the value of the password to the caller class, skip this if you are creating this view in the caller class itself
     };
+
+    handleLogin = () => {
+        if (this.state.username == '' || this.state.password == '') {
+            this.setState({showError: true});
+            this.setState({username: ''});
+            this.setState({password: ''});
+            setTimeout(() => {
+                this.setState({showError: false});
+            }, 3000);
+        } else {
+            this.props.navigation.navigate('MainAppNav');
+        }
+    }
 
     render() {
         return (
@@ -53,15 +67,20 @@ export class LoginScreen extends Component {
                     <Text style={styles.SubText} >Login to your account</Text>
                     <View style={styles.InputView} >
                         <View style={styles.TextInput}>
-                            <Feather name="phone" size={18} color="black" style={{ marginRight: 10 }} />
-                            <TextInput style={styles.TextField} keyboardType="phone-pad" placeholder='Phone' />
+                            <Feather name="user" size={18} color="black" style={{ marginRight: 10 }} />
+                            <TextInput 
+                            style={styles.TextField} 
+                            value={this.state.username}
+                            onChangeText={username => this.setState({ username })}
+                            keyboardType="text" 
+                            placeholder='Username' />
                         </View>
                         <View style={styles.TextInput}>
                             <Feather name="lock" size={18} color="black" style={{ marginRight: 10 }} />
                             <TextInput 
                             style={styles.TextField}
-                            // value={this.state.password}
-                            // onChangeText={this.handlePassword}
+                            value={this.state.password}
+                            onChangeText={this.handlePassword}
                             secureTextEntry={this.state.showPassword}
                             keyboardType="default" 
                             placeholder='Password' />
@@ -69,8 +88,9 @@ export class LoginScreen extends Component {
                                 <Feather name={this.state.icEye} size={20} color="grey" />
                             </TouchableOpacity>
                         </View>
+                        { this.state.showError && <Text style={{ color: 'red', fontSize: 12,width: WIDTH *.8, marginTop: 5,  textAlign: 'center' }}>Looks like the username or the password is empty.</Text> }
                     </View>
-                    <TouchableOpacity style={styles.Button}>
+                    <TouchableOpacity onPress={() => this.handleLogin()} style={styles.Button}>
                         <Text>Login</Text>
                     </TouchableOpacity>
                     <View style={styles.Footer} >
@@ -90,14 +110,16 @@ export class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
     Container: {
-        flex: 1,
+        flex: 1,        
+        backgroundColor: 'white',
     },
     Image: {
         width: WIDTH,
-        height: HEIGHT * .40
+        height: HEIGHT * .30
     },
     BodyView: {
-        height: (HEIGHT * .6) + 25 ,
+        // height: (HEIGHT * .7) + 25 ,
+        flex: 1,
         padding: 15,
         alignItems: 'center',
         backgroundColor: 'white',
@@ -130,6 +152,7 @@ const styles = StyleSheet.create({
     TextField: {
         flex: 1,
         marginRight: 10,
+        marginLeft: 10
     },
     ForgotText: {
         fontWeight: 'bold',
@@ -144,7 +167,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     Footer: {
-        marginTop: 20
+        marginTop: 20,
     },
     Button: {
         backgroundColor: theme_green,

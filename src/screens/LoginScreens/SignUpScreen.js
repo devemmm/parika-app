@@ -10,10 +10,13 @@ export class SignUpScreen extends Component {
         super(props);
  
         this.state = {
-            modalVisible: false,
-            icEye: 'eye-off', // default icon to show that password is currently hidden
-            password: '', // actual value of password entered by the user
-            showPassword: true // boolean to show/hide the password  
+            f_name: '',
+            l_name: '',
+            password: '',
+            c_password: '',
+            icEye: 'eye-off',
+            showPassword: true,
+            showError: false, 
         }
     }
  
@@ -32,9 +35,9 @@ export class SignUpScreen extends Component {
                 password: this.state.password
             }
         }
-        // set new state value
         this.setState(newState)
     };
+
     handlePassword = (password) => {
         let newState = {
             icEye: this.state.icEye,
@@ -42,44 +45,37 @@ export class SignUpScreen extends Component {
             password: password
         }
         this.setState(newState);
-        this.props.callback(password); // used to return the value of the password to the caller class, skip this if you are creating this view in the caller class itself
     };
 
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
+    handleConfirmPassword = (c_password) => {
+        let newState = {
+            icEye: this.state.icEye,
+            showPassword: this.state.showPassword,
+            c_password: c_password
+        }
+        this.setState(newState);
+    };
+
+    handleContinue = () => {
+        if (this.state.f_name == '' || this.state.l_name == '' || this.state.password == '' || this.state.c_password == '') {
+            this.setState({showError: true});
+            this.setState({f_name: ''});
+            this.setState({l_name: ''});
+            this.setState({password: ''});
+            this.setState({c_password: ''});
+            setTimeout(() => {
+                this.setState({showError: false});
+            }, 5000);
+        } else {
+            this.props.navigation.navigate('SignUpScreenNext');
+        }
     }
     
     render() {
         const { modalVisible } = this.state;
         return (
         <View style={styles.Container} >
-            <Modal
-            animationType="slide"
-            transparent={true}
-            statusBarTranslucent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-                this.setModalVisible(!modalVisible);
-            }}
-            >
-                <View style={styles.ModalBackground} />
-                <View style={styles.ModalContainer}>
-                    <View style={styles.ModalView}>
-                        <FlatList
-                        data={vehicleTypes}
-                        keyExtractor={item => `${item.id}`}
-                        renderItem={({item}) => {
-                            return (
-                            <TouchableOpacity onPress={() => this.setModalVisible(!modalVisible)} style={styles.CarTypeButton}>
-                                <Text style={styles.CarTypeButtonText}>{item.type}</Text>
-                            </TouchableOpacity>
-                            )
-                        }}
-                        />
-                    </View>
-                </View>
-            </Modal>
-            <View style={styles.HeaderView} >
+          <View style={styles.HeaderView} >
                 <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.BackButton} >
                     <Feather name="arrow-left" size={24} color="black" />
                 </TouchableOpacity>
@@ -90,26 +86,26 @@ export class SignUpScreen extends Component {
                     <View style={styles.InputView} >
                         <View style={styles.TextInput}>
                             <Feather name="user" size={18} color="black" style={{ marginRight: 10 }} />
-                            <TextInput style={styles.TextField} placeholder='Full Names' />
+                            <TextInput 
+                            value={this.state.f_name}
+                            onChangeText={f_name => this.setState({f_name})}
+                            style={styles.TextField} 
+                            placeholder='First Name' />
                         </View>
                         <View style={styles.TextInput}>
-                            <Feather name="phone" size={18} color="black" style={{ marginRight: 10 }} />
-                            <TextInput style={styles.TextField} keyboardType="phone-pad" placeholder='Phone' />
-                        </View>
-                        <TouchableOpacity onPress={() => this.setModalVisible(!this.props.modalVisible)} style={styles.TextInput}>
-                            <Feather name="disc" size={18} color="black" style={{ marginRight: 10 }} />
-                            <Text>--choose--</Text>
-                        </TouchableOpacity>
-                        <View style={styles.TextInput}>
-                            <Feather name="hash" size={18} color="black" style={{ marginRight: 10 }} />
-                            <TextInput style={styles.TextField} keyboardType="default" placeholder='Plate Number' />
+                            <Feather name="user" size={18} color="black" style={{ marginRight: 10 }} />
+                            <TextInput 
+                            value={this.state.l_name}
+                            onChangeText={l_name => this.setState({l_name})}
+                            style={styles.TextField} 
+                            placeholder='Last Name' />
                         </View>
                         <View style={styles.TextInput}>
                             <Feather name="lock" size={18} color="black" style={{ marginRight: 10 }} />
                             <TextInput 
                             style={styles.TextField}
-                            // value={this.state.password}
-                            // onChangeText={this.handlePassword}
+                            value={this.state.password}
+                            onChangeText={this.handlePassword}
                             secureTextEntry={this.state.showPassword}
                             keyboardType="default" 
                             placeholder='Password' />
@@ -121,8 +117,8 @@ export class SignUpScreen extends Component {
                             <Feather name="lock" size={18} color="black" style={{ marginRight: 10 }} />
                             <TextInput 
                             style={styles.TextField}
-                            // value={this.state.password}
-                            // onChangeText={this.handlePassword}
+                            value={this.state.c_password}
+                            onChangeText={this.handleConfirmPassword}
                             secureTextEntry={this.state.showPassword}
                             keyboardType="default" 
                             placeholder='Confirm Password' />
@@ -130,9 +126,10 @@ export class SignUpScreen extends Component {
                                 <Feather name={this.state.icEye} size={20} color="grey" />
                             </TouchableOpacity>
                         </View>
+                        { this.state.showError && <Text style={{ color: 'red', marginTop: 5, width: WIDTH *.8, textAlign: 'center', fontSize: 12 }}>Looks like some input fields are empty. Please complete.</Text> }
                     </View>
-                    <TouchableOpacity style={styles.Button}>
-                        <Text>Sign up</Text>
+                    <TouchableOpacity onPress={() => this.handleContinue()} style={styles.Button}>
+                        <Text>Continue</Text>
                     </TouchableOpacity>
                     <View style={styles.Footer} >
                         <TouchableOpacity>
@@ -152,33 +149,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         paddingTop: StatusBar.currentHeight
-    },
-    ModalBackground: {
-        backgroundColor: 'black',
-        flex: 1,
-        opacity: .7
-    },
-    ModalContainer: {
-        position: 'absolute',
-        width: WIDTH,
-        height: HEIGHT,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    ModalView: {
-        backgroundColor: 'white',
-        width: WIDTH *.9,
-        borderRadius: 10,
-        padding: 15,
-        justifyContent: 'center',
-    },
-    CarTypeButton: {
-        height: 40,
-        justifyContent: 'center'
-    },
-    CarTypeButtonText: {
-        textTransform: 'capitalize',
-        fontSize: 16
     },
     HeaderView: {
         height: 55,

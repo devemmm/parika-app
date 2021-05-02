@@ -20,18 +20,6 @@ export const vehicleTypes = [
         type: 'hatchback'
     },
     {
-        id: '039',
-        type: 'convertible'
-    },
-    {
-        id: '040',
-        type: 'sports utility vehicle'
-    },
-    {
-        id: '041',
-        type: 'minivan'
-    },
-    {
         id: '042',
         type: 'pickup truck'
     }

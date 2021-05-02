@@ -6,7 +6,10 @@ export const api = [
         rating: 4.3,
         distance: 132,
         price: 200,
-        status: 'avalaible',
+        available: true,
+        street: "KK 508 ST",
+        hours_o: "08:00AM",
+        hours_c: "05:00PM",
         location: 'kigali city'
     },
     {
@@ -16,7 +19,10 @@ export const api = [
         rating: 4.9,
         distance: 132,
         price: 220,
-        status: 'avalaible',
+        available: false,
+        street: "KK 556 ST",
+        hours_o: "08:00AM",
+        hours_c: "04:00PM",
         location: 'kigali city'
     },
     {
@@ -24,8 +30,11 @@ export const api = [
         name: 'remera parking',
         url: 'https://images.unsplash.com/photo-1526626607369-f89fe1ed77a9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8cGFya2luZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
         rating: 4.4,
-        distance: 8752,
-        status: 'avalaible',
+        distance: 8752,        
+        available: true,
+        street: "KK 44 ST",
+        hours_o: "08:00AM",
+        hours_c: "12:00AM",
         price: 190,
         location: 'kinamba'
     },
@@ -36,7 +45,10 @@ export const api = [
         rating: 4.0,
         distance: 13200,
         price: 300,
-        status: 'avalaible',
+        available: true,
+        street: "KK 8 ST",
+        hours_o: "10:00AM",
+        hours_c: "03:00PM",
         location: 'kigali city'
     },
     {
@@ -46,7 +58,10 @@ export const api = [
         rating: 3.9,
         distance: 9232,
         price: 250,
-        status: 'avalaible',
+        available: false,
+        street: "KK 500 ST",
+        hours_o: "06:00AM",
+        hours_c: "05:00PM",
         location: 'kigali city'
     },
     {
@@ -56,7 +71,10 @@ export const api = [
         rating: 4.9,
         distance: 132,
         price: 220,
-        status: 'avalaible',
+        available: true,
+        street: "KK 66 ST",
+        hours_o: "08:00AM",
+        hours_c: "05:00PM",
         location: 'kigali city'
     },
     {
@@ -65,7 +83,10 @@ export const api = [
         url: 'https://images.unsplash.com/photo-1526626607369-f89fe1ed77a9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8cGFya2luZ3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
         rating: 4.4,
         distance: 8752,
-        status: 'avalaible',
+        available: false,
+        street: "KK 508 ST",
+        hours_o: "08:00AM",
+        hours_c: "05:00PM",
         price: 190,
         location: 'kinamba'
     },
@@ -76,7 +97,10 @@ export const api = [
         rating: 4.0,
         distance: 13200,
         price: 300,
-        status: 'avalaible',
+        available: false,
+        street: "KK 568 ST",
+        hours_o: "05:30AM",
+        hours_c: "10:00PM",
         location: 'kigali city'
     }
 ]
