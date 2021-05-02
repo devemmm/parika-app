@@ -157,7 +157,7 @@ const LoginStack = createStackNavigator();
 export const AppNav = () => {
   return (
     <LoginStack.Navigator
-      initialRouteName="MainAppNav"
+      initialRouteName="Welcome1"
       screenOptions={{ headerShown: false }}>
       <LoginStack.Screen
         name="Welcome1"
