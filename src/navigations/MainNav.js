@@ -26,19 +26,18 @@ import SignUpScreen from '../screens/LoginScreens/SignUpScreen';
 import SignUpScreenNext from '../screens/LoginScreens/SignUpScreenNext';
 import ForgotPassword from '../screens/LoginScreens/ForgotPassword';
 import VerifyPhone from '../screens/LoginScreens/VerifyPhone';
-import ProvidePhone from '../screens/LoginScreens/ProvidePhone';
 import HelpScreen from '../screens/ProfileScreens/HelpScreen';
 import AboutScreen from '../screens/ProfileScreens/AboutScreen';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import ConfirmPassword from '../components/ConfirmPassword';
 import WalletRecharge from '../screens/ProfileScreens/WalletRecharge';
-import MoreInfo from '../screens/LoginScreens/MoreInfo';
 import ResetPwd from '../screens/LoginScreens/ResetPwd';
 import Welcome1 from '../screens/LoginScreens/Welcome1';
 import Welcome2 from '../screens/LoginScreens/Welcome2';
 import Welcome3 from '../screens/LoginScreens/Welcome3';
 import NearestParking from '../screens/NearestParking';
 import BookedTicket from '../screens/TicketScreens/BookedTicket';
+import Loading from '../screens/LoginScreens/Loading';
 
 const HomeStack = createStackNavigator();
 const HomePage = () => {
@@ -184,10 +183,9 @@ export const AppNav = () => {
       <LoginStack.Screen name="SignUpScreen" component={SignUpScreen} />
       <LoginStack.Screen name="SignUpScreenNext" component={SignUpScreenNext} />
       <LoginStack.Screen name="ForgotPassword" component={ForgotPassword} />
-      <LoginStack.Screen name="ProvidePhone" component={ProvidePhone} />
       <LoginStack.Screen name="VerifyPhone" component={VerifyPhone} />
-      <LoginStack.Screen name="MoreInfo" component={MoreInfo} />
       <LoginStack.Screen name="ResetPwd" component={ResetPwd} />
+      <LoginStack.Screen name="Loading" component={Loading} />
       <LoginStack.Screen name="MainAppNav" component={MainAppNav} />
     </LoginStack.Navigator>
   );
