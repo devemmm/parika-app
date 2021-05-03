@@ -53,7 +53,7 @@ export class LoginScreen extends Component {
                 this.setState({showError: false});
             }, 3000);
         } else {
-            this.props.navigation.navigate('MainAppNav');
+            this.props.navigation.navigate('Loading');
         }
     }
 
@@ -72,7 +72,7 @@ export class LoginScreen extends Component {
                             style={styles.TextField} 
                             value={this.state.username}
                             onChangeText={username => this.setState({ username })}
-                            keyboardType="text" 
+                            keyboardType="default" 
                             placeholder='Username' />
                         </View>
                         <View style={styles.TextInput}>

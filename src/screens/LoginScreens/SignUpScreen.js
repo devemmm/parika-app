@@ -12,6 +12,7 @@ export class SignUpScreen extends Component {
         this.state = {
             f_name: '',
             l_name: '',
+            phone: '',
             password: '',
             c_password: '',
             icEye: 'eye-off',
@@ -57,7 +58,7 @@ export class SignUpScreen extends Component {
     };
 
     handleContinue = () => {
-        if (this.state.f_name == '' || this.state.l_name == '' || this.state.password == '' || this.state.c_password == '') {
+        if (this.state.f_name == '' || this.state.l_name == '' || this.state.password == '' || this.state.c_password == '' || this.state.phone == '') {
             this.setState({showError: true});
             this.setState({f_name: ''});
             this.setState({l_name: ''});
@@ -99,6 +100,15 @@ export class SignUpScreen extends Component {
                             onChangeText={l_name => this.setState({l_name})}
                             style={styles.TextField} 
                             placeholder='Last Name' />
+                        </View>
+                        <View style={styles.PhoneInputView} >
+                            <Text>+250</Text>
+                            <TextInput 
+                            value={this.state.phone}
+                            onChangeText={phone => this.setState({ phone })}
+                            keyboardType='numeric' 
+                            style={{ marginLeft: 10, flex: 1 }}
+                            placeholder='788 123 456' /> 
                         </View>
                         <View style={styles.TextInput}>
                             <Feather name="lock" size={18} color="black" style={{ marginRight: 10 }} />
@@ -174,6 +184,17 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     TextInput: {
+        width: WIDTH *.8,
+        backgroundColor: bright_green,
+        height: 45,
+        marginTop: 10,
+        borderRadius: WIDTH *.4,
+        paddingLeft: 15,
+        paddingRight: 15,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    PhoneInputView: {
         width: WIDTH *.8,
         backgroundColor: bright_green,
         height: 45,

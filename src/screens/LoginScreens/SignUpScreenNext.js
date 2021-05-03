@@ -30,7 +30,7 @@ export class SignUpScreenNext extends Component {
                 this.setState({showError: false});
             }, 5000);
         } else {
-            this.props.navigation.navigate('ProvidePhone');
+            this.props.navigation.navigate('Loading');
         }
     }
     
@@ -76,6 +76,8 @@ export class SignUpScreenNext extends Component {
                         <View style={styles.TextInput}>
                             <Feather name="user" size={18} color="black" style={{ marginRight: 10 }} />
                             <TextInput 
+                            value = {this.state.v_name}
+                            onChangeText={v_name => this.setState({ v_name })}
                             style={styles.TextField} 
                             placeholder='Vehicle Name' />
                         </View>
@@ -86,6 +88,8 @@ export class SignUpScreenNext extends Component {
                         <View style={styles.TextInput}>
                             <Feather name="hash" size={18} color="black" style={{ marginRight: 10 }} />
                             <TextInput 
+                            value = {this.state.plate_n}
+                            onChangeText={plate_n => this.setState({ plate_n })}
                             style={styles.TextField} 
                             keyboardType="default" 
                             placeholder='Plate Number' />

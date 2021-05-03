@@ -4,7 +4,6 @@ import { Feather } from '@expo/vector-icons';
 import { theme_green, theme_grey, WIDTH } from '../constants/constants';
 
 export class HomeScreen extends Component {
-    
     render() {
         return (
         <ImageBackground style={styles.Container} source={ require('../../assets/images/map.png') } >

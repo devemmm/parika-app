@@ -26,8 +26,6 @@
     "@react-native-community/masked-view": "0.1.10",
     "expo-image-picker": "~9.2.0",
     "expo-permissions": "~10.0.0"
-    "react-native-swiper": "^1.6.0",
-    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
