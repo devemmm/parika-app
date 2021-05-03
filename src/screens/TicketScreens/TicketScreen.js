@@ -23,7 +23,7 @@ export class TicketScreen extends Component {
     super(props);
 
     this.state = {
-      modalVisible: false,
+      modalVisible: true,
     };
   }
 
@@ -56,7 +56,7 @@ export class TicketScreen extends Component {
                 </View>
                 <Text
                   style={{
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: 'bold',
                     textAlign: 'center',
                   }}>
@@ -72,14 +72,12 @@ export class TicketScreen extends Component {
                   Please note that this action can not be undone
                 </Text>
                 <View style={styles.ModalButtonView}>
-                  <TouchableOpacity
-                    style={styles.ModalButton}
-                    onPress={() => this.setModalVisible(!modalVisible)}>
-                    <Text>Cancel</Text>
+                  <TouchableOpacity onPress={() => this.setState({ modalVisible: false })} style={[styles.AlertButtons, { backgroundColor: theme_green }]}>
+                    <Text style={{ color: 'white' }}>Cancel</Text>
                   </TouchableOpacity>
-                  <View style={styles.ModalButton}>
-                    <Text>Delete</Text>
-                  </View>
+                  <TouchableOpacity onPress={() => this.setState({ modalVisible: false })} style={[styles.AlertButtons, { backgroundColor: 'red' }]}>
+                    <Text style={{ color: 'white' }}>Delete</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -187,19 +185,20 @@ const styles = StyleSheet.create({
   ModalButtonView: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    width: WIDTH * .77,
     marginBottom: 10,
+    marginTop: 15
   },
-  ModalButton: {
-    height: 50,
-    borderRadius: 20,
+  AlertButtons: {
+    height: 45,
+    borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    width: WIDTH * 35,
-    backgroundColor: 'red'
+    width: WIDTH *.37
   },
   CkeckVector: {
-    backgroundColor: 'red',
+    backgroundColor: '#fa6161',
     height: WIDTH * 0.2,
     width: WIDTH * 0.2,
     borderRadius: WIDTH * 0.1,
