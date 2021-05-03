@@ -31,8 +31,6 @@ export class Loading extends Component {
         }
     }
 }
-
-
 export default Loading
 const styles = StyleSheet.create({
     Container: {
