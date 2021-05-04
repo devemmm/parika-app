@@ -39,6 +39,3 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 })
-
-
-// hello world
