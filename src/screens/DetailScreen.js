@@ -129,11 +129,11 @@ export class DetailScreen extends Component {
               <Text style={styles.BoldText}>Parking Address: </Text>
               {item.location}
             </Text>
-            <Text>
+            <Text style={{ marginTop: 5 }}>
               <Text style={styles.BoldText}>Street Number: </Text>
               {item.street}
             </Text>
-            <Text>
+            <Text style={{ marginTop: 5 }}>
               <Text style={styles.BoldText}>Open Hours: </Text>
               {item.hours_o} - {item.hours_c}{' '}
             </Text>
@@ -230,12 +230,13 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   MoreDetailsHeader: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
     marginBottom: 10,
   },
   BoldText: {
     fontWeight: 'bold',
+    fontSize: 15
   },
   BookNowButton: {
     margin: 15,
