@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet, StatusBar, Image } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, StatusBar, Image, Modal } from 'react-native'
 import { Feather, MaterialIcons } from '@expo/vector-icons';
-import { theme_green, WIDTH } from '../constants/constants';
+import { theme_green, WIDTH, HEIGHT, bright_green } from '../constants/constants';
 import { api } from '../data/api';
 
 export class BookingScreen extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             modalVisible: false,
+             timeModal: false,
+        }
+    }
+    
     render() {
         return (
         <View style={styles.Container}>
@@ -16,10 +25,72 @@ export class BookingScreen extends Component {
                 </View>
                 <View style={styles.HeaderTitleView}>
                     <Text style={styles.HeaderTitle}>Booking</Text>
-                    <Text style={styles.HeaderSubTitle}>Booking sub text</Text>
                 </View>
                 <View style={styles.HeaderSubView}/>
             </View>
+            <Modal
+          statusBarTranslucent={true}
+          animationType="none"
+          transparent={true}
+          visible={this.state.modalVisible}>
+          <View>
+            <View style={styles.ModalBG} />
+            <View
+              style={{
+                position: 'absolute',
+                height: HEIGHT,
+                width: WIDTH,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <View style={styles.ModalView}>
+                <TouchableOpacity onPress={()=> this.setState({modalVisible: false})} style={styles.VehicleView}>
+                    <Text>Hilx 3020 PR</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> this.setState({modalVisible: false})} style={styles.VehicleView}>
+                    <Text>Toyota PR</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> this.setState({modalVisible: false})} style={styles.VehicleView}>
+                    <Text>Audi3020</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+            </Modal>
+            <Modal
+          statusBarTranslucent={true}
+          animationType="none"
+          transparent={true}
+          visible={this.state.timeModal}>
+          <View>
+            <View style={styles.ModalBG} />
+            <View
+              style={{
+                position: 'absolute',
+                height: HEIGHT,
+                width: WIDTH,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <View style={styles.TimeModalView}>
+                <Text>Work In Progress...</Text>
+                <TouchableOpacity 
+                onPress={() => this.setState({timeModal: false})}
+                style={{
+                    backgroundColor: theme_green,
+                    height: 40,
+                    width: WIDTH *.7,
+                    borderRadius:  WIDTH *.25,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 15
+                }}>
+                    <Text>Close</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+            </Modal>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.ScrollView}>
                 <View>
                     <Text style={styles.SectionHeader} >Destination</Text>
@@ -31,54 +102,53 @@ export class BookingScreen extends Component {
                         </View>
                     </View>
                     <View style={styles.ParkingTime} >
-                        <TouchableOpacity style={styles.TimeButton}>
-                            <Text style={styles.TimeButtonTitle}>Arriving</Text>
-                            <Text>Today</Text>
-                            <Text>12:00PM</Text>
-                        </TouchableOpacity>
-                        <View style={styles.ParkingTimeMiddle}>
-                            <Text style={styles.DurationTag}>2h 0m</Text>
+                        <View style={styles.TimeFlex}>
+                            <TouchableOpacity onPress={() => this.setState({timeModal: true})}>
+                                <Text style={styles.TimeDate}>Thu, May 6, 2021</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.setState({timeModal: true})}>
+                                <Text style={styles.TimeHour}>10:00 PM</Text>
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity style={styles.TimeButton}>
-                            <Text style={styles.TimeButtonTitle}>Leaving</Text>
-                            <Text>Today</Text>
-                            <Text>12:00PM</Text>
-                        </TouchableOpacity>
+                        <View style={[styles.TimeFlex, { marginTop: 15 }]}>
+                            <TouchableOpacity onPress={() => this.setState({timeModal: true})}>
+                                <Text style={styles.TimeDate}>Thu, May 6, 2021</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.setState({timeModal: true})}>
+                                <Text style={styles.TimeHour}>02:00 AM</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.VehicleDetailsView}>
                     <View style={styles.VehicleDetailsFlex}>
                         <Text style={styles.VehicleDetailsHeader}>Vehicle</Text>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfile')}>
-                            <Text style={{ color: '#51afed', fontWeight: 'bold' }}>Change Vehicle Details</Text>
+                        <TouchableOpacity onPress={() => this.setState({modalVisible: true})}>
+                            <Text style={{ color: '#51afed', fontWeight: 'bold' }}>Change Vehicle</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ marginTop: 5, paddingBottom: 15, borderBottomColor: '#dcddde', borderBottomWidth: 1 }}>
                         <View style={styles.VehicleDetailsFlex}>
-                            <Text style={styles.VehicleDetailsBold}>Type</Text>
-                            <Text>Personal</Text>
+                            <Text>Name</Text>
+                            <Text style={{ color: 'grey' }}>Hilux 45T</Text>
                         </View>
                         <View style={styles.VehicleDetailsFlex}>
-                            <Text style={styles.VehicleDetailsBold}>Plate Number</Text>
-                            <Text>RAD 345F</Text>
+                            <Text>Plate Number</Text>
+                            <Text style={{ color: 'grey' }}>RAD 345F</Text>
                         </View>
-                    </View>
-                    <View style={styles.MoreInfoView}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Driver's Info</Text>
-                        <Text >Hakizimana Ja Korode</Text>
-                    </View>
-                    <View style={styles.MoreInfoView}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Payment Method</Text>
-                        <Text >MOMO</Text>
+                        <View style={styles.VehicleDetailsFlex}>
+                            <Text>Driver's Info</Text>
+                            <Text style={{ color: 'grey', width: WIDTH *.46 }} numberOfLines={1} >Hakizimana Ja Korode</Text>
+                        </View>
                     </View>
                     <View style={styles.MoreInfoView}>
                         <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Price</Text>
-                        <Text style={{ fontWeight: 'bold', fontSize: 17 }} >Rwf 220</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 17 }} >220 FRW</Text>
                     </View>
                 </View>
             </ScrollView>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('ConfirmPassword')} style={styles.BookNowButton}>
-                <Text style={styles.BookNowButtonText}>Proceed To Payment</Text>
+            <TouchableOpacity style={styles.BookNowButton}>
+                <Text>Proceed To Payment</Text>
             </TouchableOpacity>
         </View>
         )
@@ -90,6 +160,34 @@ const styles = StyleSheet.create({
         paddingTop: StatusBar.currentHeight,
         flex: 1,
     },
+  ModalBG: {
+    height: HEIGHT,
+    width: WIDTH,
+    backgroundColor: 'black',
+    opacity: 0.7,
+  },
+  ModalView: {
+    width: WIDTH * 0.85,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    paddingRight: 10,
+    paddingLeft: 10
+  },
+  TimeModalView: {
+     width: WIDTH * 0.85,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  VehicleView: {
+      height: 50,
+      justifyContent: 'center',
+      padding: 5,
+      borderBottomColor: bright_green,
+      borderBottomWidth: 1
+  },
     HeaderView: {
         flexDirection: 'row',
         paddingLeft: 15,
@@ -150,45 +248,26 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     ParkingTime: {
-        marginTop: 20,
-        paddingTop: 10,
-        paddingBottom: 10,
-        flexDirection: 'row',
+        marginTop: 25,
         borderColor: '#cacdcf',
         borderRadius: 10,
         borderWidth: 1,
+        padding: 15
+    },
+    TimeFlex: {
+        flex: 1,
+        flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
     },
-    TimeButton: {
-        width: WIDTH *.35,
-        alignItems: 'center',
-        height: 70,
-        justifyContent: 'center'
+    TimeDate: {
+        fontSize: 16
     },
-    ParkingTimeMiddle: {
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundColor: theme_green,
-        width: WIDTH *.18,
-        height: 22,
-        borderRadius: 40,
-    },
-    DurationTag: {
-        alignItems: 'center',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 13
-    },
-    TimeButtonTitle: {
-        fontWeight: 'bold',
+    TimeHour: {
         fontSize: 16
     },
     VehicleDetailsView: {
         marginTop: 30,
         paddingBottom: 10,
-        // borderBottomColor: '#cacdcf',
-        // borderBottomWidth: 1
     },
     VehicleDetailsFlex: {
         flexDirection: 'row',
@@ -198,7 +277,7 @@ const styles = StyleSheet.create({
     },
     VehicleDetailsHeader: {
         fontWeight: 'bold', 
-        fontSize: 18,
+        fontSize: 17,
     },
     VehicleDetailsBold: {
         fontWeight: 'bold'
@@ -211,24 +290,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomColor: '#dcddde',
-        borderBottomWidth: 1,
         height: 50
     },
     BookNowButton: {
-        marginRight: 15,
-        marginLeft: 15,
-        marginTop: 5,
-        marginBottom: 10,
+        margin: 15,
         backgroundColor: theme_green,
-        height: 40,
-        borderRadius: 20,
+        height: 45,
+        borderRadius: 25,
         justifyContent: 'center',
         alignItems: 'center'
     },
     BookNowButtonText: {
         fontSize: 17,
-        fontWeight: 'bold'
     }
 })
 export default BookingScreen
