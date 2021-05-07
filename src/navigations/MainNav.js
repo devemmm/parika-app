@@ -19,7 +19,6 @@ import ProfileScreen from '../screens/ProfileScreens/ProfileScreen';
 import NotificationSettings from '../screens/ProfileScreens/NotificationSettings';
 import WalletSettings from '../screens/ProfileScreens/WalletSettings';
 import EditProfile from '../screens/ProfileScreens/EditProfile';
-import PasswordReset from '../screens/ProfileScreens/PasswordReset';
 import PasswordNew from '../screens/ProfileScreens/PasswordNew';
 import LoginScreen from '../screens/LoginScreens/LoginScreen';
 import SignUpScreen from '../screens/LoginScreens/SignUpScreen';
@@ -78,7 +77,6 @@ const ProfilePage = () => {
       <HomeStack.Screen name="WalletRecharge" component={WalletRecharge} />
       <HomeStack.Screen name="SettingScreen" component={SettingScreen} />
       <HomeStack.Screen name="EditProfile" component={EditProfile} />
-      <HomeStack.Screen name="PasswordReset" component={PasswordReset} />
       <HomeStack.Screen name="PasswordNew" component={PasswordNew} />
       <HomeStack.Screen name="HelpScreen" component={HelpScreen} />
       <HomeStack.Screen name="AboutScreen" component={AboutScreen} />
