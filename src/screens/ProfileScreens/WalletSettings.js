@@ -30,8 +30,6 @@ export class WalletSettings extends Component {
             setTimeout(() => {
                 this.setState({ button_error: false })
             }, 3000);
-            this.setState({ phone : '' })
-            this.setState({ amount : '' })
         } else {
             this.setState({ show_modal: true })
         }
