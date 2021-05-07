@@ -29,7 +29,6 @@ import HelpScreen from '../screens/ProfileScreens/HelpScreen';
 import AboutScreen from '../screens/ProfileScreens/AboutScreen';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import ConfirmPassword from '../components/ConfirmPassword';
-import WalletRecharge from '../screens/ProfileScreens/WalletRecharge';
 import ResetPwd from '../screens/LoginScreens/ResetPwd';
 import Welcome1 from '../screens/LoginScreens/Welcome1';
 import Welcome2 from '../screens/LoginScreens/Welcome2';
@@ -74,7 +73,6 @@ const ProfilePage = () => {
         component={NotificationSettings}
       />
       <HomeStack.Screen name="WalletSettings" component={WalletSettings} />
-      <HomeStack.Screen name="WalletRecharge" component={WalletRecharge} />
       <HomeStack.Screen name="SettingScreen" component={SettingScreen} />
       <HomeStack.Screen name="EditProfile" component={EditProfile} />
       <HomeStack.Screen name="PasswordNew" component={PasswordNew} />
