@@ -21,7 +21,7 @@ export class SettingScreen extends Component {
                     <Text style={styles.ListItemViewTitle}>Edit profile</Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("PasswordReset")} style={[styles.ListItemView, { height: 50 }]}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("PasswordNew")} style={[styles.ListItemView, { height: 50 }]}>
                 <View>
                     <Text style={styles.ListItemViewTitle}>Reset password</Text>
                 </View>
